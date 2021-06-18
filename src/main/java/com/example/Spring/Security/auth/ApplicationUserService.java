@@ -17,8 +17,9 @@ public class ApplicationUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return applicationUserDao.getApplicationUserByUserName(username)
+        ApplicationUser applicationUser = applicationUserDao.getApplicationUserByUserName(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException(String.format("User Name: %s Dose Not Exist!!",username)));
+                        new UsernameNotFoundException(String.format("User Name: %s Dose Not Exist!!", username)));
+        return applicationUser;
     }
 }
